@@ -1,10 +1,28 @@
-import React from 'react';
-import './index.scss';
+import React, { useState } from 'react'
+import Modal from './components/Modal'
+import './index.scss'
 
 function App() {
+  const [showModal, setShowModal] = useState(false)
+
+  const showModalHandler = () => {
+    setShowModal(true)
+  }
+
+  const hideModalHandler = () => {
+    setShowModal(false)
+  }
+
   return (
     <div className="App">
-      <button className="open-modal-btn">✨ Открыть окно</button>
+      <button onClick={showModalHandler} className="open-modal-btn">
+        ✨ Открыть окно
+      </button>
+
+      <Modal showModal={showModal} hideModal={hideModalHandler} />
+
+      {/* {showModal && <Modal hideModal={hideModalHandler} />} */}
+
       {/* <div className="overlay">
         <div className="modal">
           <svg height="200" viewBox="0 0 200 200" width="200">
@@ -15,7 +33,7 @@ function App() {
         </div>
       </div> */}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
